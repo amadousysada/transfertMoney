@@ -1,0 +1,108 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      template="/templates/template.xhtml">
+      
+      
+      
+    <ui:define name="content" >
+      <h:form id="form" styleClass="container row  starter-body1 ">
+      		
+      			<p:commandButton styleClass="btn btn-success" id="profilAg" value="INFOS" type="button" />
+    			<p:overlayPanel showCloseIcon="true" id="imagePanel" for="profilAg" hideEffect="fade">
+    				<p:outputPanel  styleClass="jumbotron">
+    					<p:panelGrid  columns="2" >
+    						<p:outputLabel styleClass="label label-info" value="AGENCE:"></p:outputLabel>
+      						<p:outputLabel value="#{Bean.admin.agence.label}"></p:outputLabel>
+      						<p:outputLabel styleClass="label label-info" value="VILLE:"></p:outputLabel>
+      						<p:outputLabel value="#{Bean.admin.agence.localite.ville.nom_v}"></p:outputLabel>
+      						<p:outputLabel styleClass="label label-info" value="LOCALITE:"></p:outputLabel>
+      						<p:outputLabel value="#{Bean.admin.agence.localite.label_loc}"></p:outputLabel>
+    					</p:panelGrid>
+    				</p:outputPanel>
+    			</p:overlayPanel>
+   				
+    			
+    			<p:dataTable styleClass="col-sm-8 pull-right datatable-view well"   tableStyleClass="tView"   value="#{Bean.allTransfertIn}" var="t" id="datatable" paginator="true" rows="2"
+                 paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" paginatorPosition="bottom"
+                  widgetVar="transfertTable"  emptyMessage="AUCUN ENREGISTREMENT" filteredValue="#{Bean.filteredtransferts}"
+                 ><!-- selectionMode="single" selection="#{Bean.selectedTransfert}" lazy="false" rowKey="#{t.getId_tr()}" -->
+                 
+ 				
+ 					<f:facet name="header">
+		            <p:outputPanel styleClass="search-style">
+		                <p:outputLabel id="search" value="Search" style="font-size:25px" for="globalFilter" styleClass="label"/>
+		                <p:inputText id="globalFilter" styleClass="label2" onkeyup="PF('transfertTable').filter()"  placeholder="mot-cle"/>
+		            </p:outputPanel>
+		            
+		            
+		        </f:facet>
+              		<p:column headerText="Nom" filterBy="#{t.getNom()}"   filterStyle="visibility: hidden" style="color:#000000;height:10px;background-color:hsl(240, 61%, 85%)">
+              			#{t.getNom()}
+              		</p:column>
+              		<p:column headerText="Telephone" filterBy="#{t.getId_per()}"  filterStyle="visibility: hidden" style="color:#000000;height:10px;background-color:hsl(240, 61%, 85%)">
+              			#{t.getId_per()}
+              		</p:column>
+              		<p:column headerText="Somme" filterBy="#{t.getSomme()}" filterStyle="visibility: hidden" style="color:#000000;height:10px;background-color:hsl(240, 61%, 85%)">
+              			
+              			#{t.getSomme()}
+              		</p:column>
+              		<p:column headerText="Provenance" filterBy="#{t.getVillep().getNom_v()}" filterStyle="visibility: hidden" style="color:#000000;height:10px;background-color:hsl(240, 61%, 85%)">
+              			#{t.getVillep().getNom_v()}
+              		</p:column>
+              		<p:column headerText="Beneficiaire" filterBy="#{t.getPhone()}" width="10px" filterStyle="visibility: hidden" style="color:#000000;height:10px;background-color:hsl(240, 61%, 85%)">
+              			#{t.getPhone()}
+              		</p:column>
+              		<p:column headerText="statut" filterStyle="visibility: hidden" style="background-color:hsl(240, 61%, 85%)" filterBy="#{t.getStatut()}">
+           				<p:graphicImage width="100%" height="20%"  library="images" name="#{t.getStatut()==0?'non_ok.jpg':'oui_ok.jpg'}" />
+      				</p:column>
+      				<p:column width="10px" filterStyle="visibility: hidden" style="color:#000000;height:10px;background-color:hsl(240, 61%, 85%)">
+		            	<p:commandButton update=":form:transfertDetail"  onclick="PF('tDialog').show()" ajax="true" value="ok" style="float:left;background:#000000;color:white;border:none" icon="ui-icon-calculator">
+		            		<f:setPropertyActionListener value="#{t}" target="#{Bean.selectedTransfert}"></f:setPropertyActionListener>
+		            	</p:commandButton>
+      				</p:column>
+                 	</p:dataTable>
+       		<p:chart id="ch1" styleClass="col-sm-1 pull-left" type="bar" model="#{Bean.start()}"  style="height:200px;width:250px" />
+       		<p:chart id="ch2" styleClass="col-sm-1 pull-left" type="bar" model="#{Bean.start2()}"  style="height:200px;width:250px" />
+      		<p:outputPanel styleClass="pull-right" id="sP" >
+      			<p:outputLabel styleClass="label-info" value="STATISTIQUE"></p:outputLabel>
+	      		<p:panelGrid columns="2" styleClass="col-sm-3 pull-right" >
+	    				<h:outputText value="somme entrant"></h:outputText>
+	    				<h:outputText value="#{Bord.se}"></h:outputText>
+	    				<h:outputText value="somme sortant"></h:outputText>
+	    				<h:outputText value="#{Bord.ss}"></h:outputText>
+	    				<h:outputText value="Benefice"></h:outputText>
+	    				<h:outputText value="#{Bord.b}"></h:outputText>
+	    		</p:panelGrid>
+      		</p:outputPanel>
+                 	
+					
+                 	<p:dialog id="di" style="margin-top:0px" styleClass="col-sm-3 starter-body"  header="Transfert" widgetVar="tDialog" resizable="false">
+                 			
+        					<p:outputPanel id="transfertDetail" style="width:200px">
+            					<p:panelGrid  columns="2">
+		                			<h:outputText value="Expeditaire:" />
+		                			<h:outputText  value="#{Bean.selectedTransfert.nom}" />
+		                			<h:outputText value="Beneficiare:" />
+		                			<h:outputText value="#{Bean.selectedTransfert.phone}" />
+					                <h:outputText value="Somme:" />
+					                <h:outputText value="#{Bean.selectedTransfert.somme}"/>
+		                			<h:outputText value="Provenance:" />
+		                			<h:outputText value="#{Bean.selectedTransfert.villep.nom_v}" />
+            					</p:panelGrid>
+            					<p:commandButton id="rbtn" update=":form:datatable :form:ch2 :form:datatable:search" ajax="true"   value="recuperer" action="#{Bean.recuperer()}">
+            					</p:commandButton>
+        					</p:outputPanel>
+                 	<p:blockUI block="di" trigger="rbtn" >
+    					<h:panelGrid columns="2">  
+        					<h:graphicImage library="images" name="ajax-loader.gif"  
+                        		style="margin-right: 12px; vertical-align: middle;"/>  
+        					<h:outputText value="en cours de recuperation..." style="white-space: nowrap;"/>  
+    					</h:panelGrid>  
+					</p:blockUI>
+    				</p:dialog>
+    		</h:form>
+    			</ui:define>
+</ui:composition>

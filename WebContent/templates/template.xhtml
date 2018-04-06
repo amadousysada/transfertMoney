@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<h:head>    
+	<h:outputStylesheet library="css" name="bootstrap.css" media="screen" />
+	<h:outputStylesheet library="css" name="dashboard.css" media="screen" />
+	<h:outputStylesheet library="css" name="layout.css" media="screen" />
+	<h:outputStylesheet library="css" name="footer.css" media="screen" />
+	<h:outputStylesheet library="css" name="about.css" media="screen" />
+</h:head>
+
+
+<h:body styleClass="starter-body">
+	<p:growl id="growl" autoUpdate="true"  ></p:growl>
+	<ui:fragment rendered="#{Bean.connected}">
+		<ui:insert name="content" />
+		
+		<ui:insert name="footer">
+			<ui:include src="/templates/footer.xhtml" />
+		</ui:insert>
+	</ui:fragment>
+	
+	<ui:fragment rendered="#{!Bean.connected}">
+		<h:form>
+			<div class="alert alert-warning jumbotron">
+                <i class="fa fa-exclamation-triangle fa-3x"></i>
+                <h:outputText value="PAGE INACCESSIBLE !"></h:outputText>
+                <h:commandLink action="#{Bean.logout}" value="accueil"></h:commandLink>
+            </div>			
+		</h:form>
+	</ui:fragment>
+</h:body>
+</html>

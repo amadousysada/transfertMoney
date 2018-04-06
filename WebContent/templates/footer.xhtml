@@ -1,0 +1,122 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+        <div style="height:50px;background-image: -webkit-linear-gradient(90deg, #168d59, #1ea167);background-color: #1ea167;box-shadow: 0px 0px 0px rgba(255, 255, 255, 0.2) inset, 0px 0px 0px rgba(0, 0, 0, 0.5)" class="navbar navbar-fixed-top" role="navigation" id="nvb">
+        	<h:form>
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <span class="navbar-brand login-footer4 baniere1" style="color:white">TRANSFERT D'ARGENT</span>
+                </div>
+                <div class="navbar-collapse collapse liens">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                			<button type="button" class="footer-btn" style="width:100px" onclick="PF('dlg1').show()">
+                			<h:graphicImage width="50%" height="95%" styleClass="img-circle" library="images" name="icon-options.jpg" /></button>   
+                		</li>
+                        <li>
+                        	<h:commandLink action="#{Bean.naviguer}" value="A Propos" style="color:white"></h:commandLink>
+                        </li>
+                        <li>
+                        	<h:commandLink  style="width:150px" action="#{Bean.logout}" value="">
+                        	     <h:graphicImage width="70%" height="40%"  styleClass="img-circle" library="images" name="exit.png" />  
+                        	</h:commandLink>
+                        </li>
+                    </ul>
+                </div>
+            </div></h:form>
+        </div>
+        	<p:dialog  hideEffect="blind" styleClass="starter-body" header="AJOUTER" widgetVar="dlg1" Height="300" id="dial" resizable="true" style="background:hsl(0, 0%, 90%);margin-top:90px">
+                		
+    					<p:tabView dynamic="true" cache="true" styleClass="footer-tabView">
+        					
+    						<p:tab titleStyleClass="p-view" rendered="#{!Bean.sup}" title="AJOUTER TRANSFERT">
+    						
+                				<h:form  id="dial8"><div style="width:250px">
+                				<label for="nom">expediteur</label>
+                				
+                				<div class="form-group">
+									<p:inputText id="nom" styleClasss="form-control" value="#{Bean.nom}" required="true" requiredMessage="nom:obligatoire" placeholder="nom complet" />
+								</div>
+								<div class="form-group">
+									<p:inputText id="phone1" styleClasss="form-control" value="#{Bean.phone1}" required="true" requiredMessage="telephone:obligatoire" placeholder="telephone" />
+								</div>
+								<div class="input-group">
+									<p:inputText  id="somme"  styleClasss="form-control" value="#{Bean.somme}" required="true" requiredMessage="somme:obligatoire" placeholder="somme" >
+										<f:validateLongRange minimum="1000"></f:validateLongRange>
+									</p:inputText>
+									<span class="input-group-addon">UM</span>
+								</div>
+								
+					        	<label for="nom">Beneficiaire</label>
+								<div class="form-group">
+									<p:inputText id="phone2" styleClasss="form-control" value="#{Bean.phone2}" required="true" requiredMessage="telephone:obligatoire" placeholder="telephone" />
+								</div>
+								<div class="form-group">
+									<p:selectOneMenu value="#{Bean.v}" >
+		 								<f:selectItems value="#{Bean.allVille}" />
+						 			</p:selectOneMenu>
+								</div>
+					            <p:commandButton ajax="true" style="background-color:#337ab7" styleClass="footer-btn-ok" update=":form:ch1 :form:ch2 :form:sP" id="addMsgButton" value="envoyer" action="#{Bean.save()}">
+					            </p:commandButton>
+					              
+				        		</div>
+				        		<p:blockUI block="dial8" trigger="addMsgButton" >
+    								<h:panelGrid columns="2">  
+        								<h:graphicImage library="images" name="ajax-loader.gif"  style="margin-right: 12px; vertical-align: middle;"/>  
+        								<h:outputText value="envoi en cours..." style="white-space: nowrap;"/>  
+    								</h:panelGrid>  
+								</p:blockUI>
+				        		</h:form>
+ 				        	</p:tab>
+				        	<p:tab title="AJOUTER ADMIN" titleStyleClass="p-view"  rendered="#{Bean.sup}">
+            					<h:form style="height:200px" id="dial9">     							
+        								<div class="form-group">
+            							<p:inputText type="text" required="true" value="#{AddAdminBean.nom}" placeholder="Nom"  styleClass="box1" >
+            								<!-- <p:ajax event="keyup" update="pp" ></p:ajax> -->
+            							</p:inputText>
+            								
+            							</div>
+            							<div class="form-group">
+            							<p:inputText type="text" required="true" value="#{AddAdminBean.prenom}" placeholder="Prenom" styleClass="box1 border2" />
+            							</div>
+            							<div class="form-group">
+            							<p:inputText type="password" required="true" value="#{AddAdminBean.id_ad}" placeholder="Identifiant" styleClass="box1 border2" >
+<!--             								<p:ajax event="keyup" update="pp1" ></p:ajax>
+ -->            							</p:inputText>
+            							</div>
+            							<!-- <p:panelGrid columns="2">
+            								<h:outputText value="UserName"></h:outputText>
+	            							<h:outputText value="#{AddAdminBean.nom}" id="pp"></h:outputText>
+	            							<h:outputText value="PassWord"></h:outputText>
+	            							<h:outputText value="#{AddAdminBean.id_ad}" id="pp1"></h:outputText>
+            							</p:panelGrid> -->
+            							<div class="form-group">
+            							<p:commandButton ajax="true" id="addAdmin"  styleClass="send" value="Valider" action="#{AddAdminBean.creerAdmin()}" /> </div>  
+    							<p:blockUI block="dial9" trigger="addAdmin" >
+    								<h:panelGrid columns="2">  
+        								<h:graphicImage library="images" name="ajax-loader.gif"  style="margin-right: 12px; vertical-align: middle;"/>  
+        								<h:outputText value="ajout en cours..." style="white-space: nowrap;"/>  
+    								</h:panelGrid>  
+								</p:blockUI>
+    							</h:form>
+        					</p:tab>
+        					<p:tab title="AJOUTER VILLE" titleStyleClass="p-view" rendered="#{Bean.sup}">
+           				 		<h:outputText value="FIABLE ..." />
+        					</p:tab>
+        					<p:tab title="AJOUTER AGENCE" titleStyleClass="p-view" rendered="#{Bean.sup}">
+            					<h:outputText value="RAPIDE..." />
+        					</p:tab>
+				        </p:tabView>   
+                	</p:dialog> 
+                  
+</html>
+ 

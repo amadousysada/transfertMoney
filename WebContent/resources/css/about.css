@@ -1,0 +1,9 @@
+@CHARSET "ISO-8859-1";
+#home-hero {
+                background-image: url('resources/images/home-hero-mobile.jpg');
+            }
+            @media only screen and (min-width: 768px) {
+                #home-hero {
+                    background-image: url('assets/graphics/heros/home-hero.jpg');
+                }
+            }

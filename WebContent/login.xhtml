@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+	
+	<h:head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <h:outputStylesheet library="css" name="bootstrap.css" media="screen" />
+        <h:outputStylesheet library="css" name="style.css" media="screen" />
+        <h:outputStylesheet library="css" name="style2.css" media="screen" />
+        <h:outputStylesheet library="css" name="style5.css" media="screen" />
+		<h:outputStylesheet library="css" name="dashboard.css" media="screen" />
+		<h:outputStylesheet library="css" name="layout.css" media="screen" />
+		<h:outputStylesheet library="css" name="login.css" media="screen" />
+		<script src="js/index.js"></script>
+	    <script src="http://s.codepen.io/assets/libs/modernizr.js" type="text/javascript"></script>
+	    <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js'></script>
+		<script src='https://code.jquery.com/jquery-2.1.4.min.js'></script>
+    	<script src="js/index2.js"></script>
+		<script src="js/index3.js"></script>
+        <title>TRANSFERT D'ARGENT</title>
+    </h:head>
+    
+    <h:body  styleClass="login-body">
+        <div class="container">
+        <div class="row">
+        	<h:graphicImage library="images" class="col-sm-6 col-sm-offset-3 login-form" name="logo.jpg" width="100%" height="175" alt="" />
+        	<h:outputText rendered="#{Bean.error==1}" value="#{Bean.error==1?'password ou username incorrecte.Veillez resaisir vos coordonnees please ':''}" styleClass="col-sm-3 alert alert-danger"></h:outputText>
+        </div>
+        <div class="row ">
+ 			<div class="login-footer2 col-sm-4 col-sm-push-4 " style="background:rgba(0, 90, 120, 0.7);font-size:30px;color:white">TRANSFERT D'ARGENT </div>
+            <div class="login col-sm-5 col-sm-offset-4 main-wrap">
+ 				<span  class="header">
+    				<span class="text">LOGIN</span>
+    				<span class="loader"></span>
+ 				</span>
+                <h:form role="form" styleClass="col-sm-6 col-sm-offset-3  login-main " >
+	                		<p:growl autoUpdate="true"/>
+	                        <p:inputText placeholder="Username" id="usnm" value="#{Bean.username}" required="true" requiredMessage="usename ne doit pas etre vide" styleClass="box1 border1"/>
+	                        <p:password placeholder="Password"  id="pswd" value="#{Bean.password}" required="true" requiredMessage="password ne doit pas etre vide" styleClass="box1 border2" />  
+	                        <p:commandButton styleClass="send login-button" value="go"  id="login" action="#{Bean.login}" />  
+	            </h:form>
+            </div>
+        </div>
+        <div class="row">
+         	<div class="login-footer col-sm-4 col-sm-push-4" style="font-size:20px;color:blue">AMADOU SY-AHMED FILALY</div>
+        </div>
+        
+	</div>
+    </h:body>
+</html>

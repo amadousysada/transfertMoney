@@ -1,0 +1,50 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      template="/templates/template.xhtml">
+
+<ui:define name="content" >
+    <div class="btt-btn">
+        <i class="icon-chevron-up"></i>
+    </div>
+    
+        <div class="hero" id="home-hero" style="background-image:url(home-hero-mobile.jpg)"> 
+            <div id="mobile-nav">
+                <div id="top-nav">
+                    <div class="container-fluid">
+                        <div id="top-nav-btns">
+                            <a href="http://business.westernunion.com/About" title="Business">Business</a>
+                            <a href="http://www.westernunion.com/home" title="Consumer">Consumer</a>
+                            <a href="https://agentportal.westernunion.com/ap/loginap.do" title="Partners">Partners</a>
+                            <a class="active" href="index.html" title="About Us">About Us</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container-fluid">
+                <div class="container-offset" id="home-hero-content">
+                    <div class="hero-content">
+                        <h1>RIM Money</h1>
+
+                        <div class="lead">
+                        	<p>
+                            	On  pense que quand  l'argent circule,des meilleures choses peuvent survenir.
+                            	Une business emergente.Des enfants qui partent a l'ecole.Une economie prospere,des oportunites ouvertes, une communaute saine et des relations endurcies.
+
+								Envoyer de L'argent pour le meilleur signifie Envoyer de L'argent pour un monde meilleur –creer une valeur pour les individus et pour les societes.
+                            </p>
+                            <p:galleria style="margin-left:250px" value="#{Bean.images}" var="image" panelWidth="500" panelHeight="313" showCaption="true">
+    							<p:graphicImage library="images"  name="#{image}.jpg" alt="Description Image de #{image}" title="#{image}"/>
+							</p:galleria>
+                        
+                            <p>This is the Way the World Moves Money for Better</p>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+	</ui:define>
+</ui:composition>

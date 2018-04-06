@@ -1,0 +1,96 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<faces-config version="2.2"
+           xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
+ 
+   
+    <application>
+    <el-resolver>org.springframework.web.jsf.el.SpringBeanFacesELResolver</el-resolver>
+    </application>
+    <managed-bean>
+    	<managed-bean-name>Bean</managed-bean-name>
+    	<managed-bean-class>ss.com.controller.CtrlBean</managed-bean-class>
+    	<managed-bean-scope>session</managed-bean-scope>
+    	<managed-property>
+    		<property-name>service</property-name>
+    		<value>#{service}</value>
+    	</managed-property>
+    </managed-bean>
+    <managed-bean>
+    	<managed-bean-name>AddAdminBean</managed-bean-name>
+    	<managed-bean-class>ss.com.controller.Adminini</managed-bean-class>
+    	<managed-bean-scope>session</managed-bean-scope>
+    	<managed-property>
+    		<property-name>service</property-name>
+    		<value>#{service}</value>
+    	</managed-property>
+    	<managed-property>
+    		<property-name>bean</property-name>
+    		<value>#{Bean}</value>
+    	</managed-property>
+    </managed-bean>
+    
+    <managed-bean>
+    	<managed-bean-name>Bord</managed-bean-name>
+    	<managed-bean-class>ss.com.controller.CtrlBord</managed-bean-class>
+    	<managed-bean-scope>session</managed-bean-scope>
+    	<managed-property>
+    		<property-name>service</property-name>
+    		<value>#{service}</value>
+    	</managed-property>
+    	<managed-property>
+    		<property-name>bean</property-name>
+    		<value>#{Bean}</value>
+    	</managed-property>
+    </managed-bean>
+    
+    <navigation-rule>
+        <display-name>/login.xhtml</display-name>
+        <from-view-id>/login.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>valide</from-outcome>
+            <to-view-id>/templates/content.xhtml</to-view-id>
+            <redirect></redirect>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>invalide</from-outcome>
+            <to-view-id>/login.html</to-view-id>
+            <redirect></redirect>
+        </navigation-case>
+        
+    </navigation-rule> 
+    
+    <navigation-rule>
+        <display-name>/templates/content.xhtml</display-name>
+        <from-view-id>/templates/content.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>bord</from-outcome>
+            <to-view-id>/pages/bord.xhtml</to-view-id>
+            <redirect></redirect>
+        </navigation-case>
+        
+    </navigation-rule> 
+    <navigation-rule>
+        <display-name>/templates/content.xhtml</display-name>
+        <from-view-id>/templates/content.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>logout</from-outcome>
+            <to-view-id>/login.xhtml</to-view-id>
+            <redirect></redirect>
+        </navigation-case>
+        
+    </navigation-rule> 
+    
+    <navigation-rule>
+        <display-name>/pages/bord.xhtml</display-name>
+        <from-view-id>/pages/bord.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>logout</from-outcome>
+            <to-view-id>/login.xhtml</to-view-id>
+            <redirect></redirect>
+        </navigation-case>
+        
+    </navigation-rule> 
+</faces-config>
