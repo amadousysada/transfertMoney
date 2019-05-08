@@ -22,7 +22,7 @@ public class Test {
 		
 		//AbstractApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
 		
-		ClassPathXmlApplicationContext context=	new ClassPathXmlApplicationContext(new String[]{"applicationContext.xml"});
+		ClassPathXmlApplicationContext context=	new ClassPathXmlApplicationContext("applicationContext.xml");
 		ITransfertService service=(ITransfertService) context.getBean("service");
 		
 		service.creer_ville("Nouakchott");

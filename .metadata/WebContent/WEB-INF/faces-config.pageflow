@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf15573335327380" configfile="/TECH/WebContent/WEB-INF/faces-config.xml">
+  <nodes xsi:type="pageflow:PFPage" name="/login.xhtml" x="554" y="380" id="pf15573336470991" referenceLink="//@navigationRule.3/@navigationCase.0/@toViewId|" outlinks="pf15573336471002 pf15573336471003" inlinks="pf15573336471004 pf15573336471005" path="/login.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="/templates/content.xhtml" x="122" y="380" id="pf15573336471006" referenceLink="//@navigationRule.2/@fromViewId|" outlinks="pf15573336471007 pf15573336471004" inlinks="pf15573336471002" path="/templates/content.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="login.html" x="770" y="380" id="pf15573336471008" referenceLink="//@navigationRule.0/@navigationCase.1/@toViewId|" inlinks="pf15573336471003" path="/login.html"/>
+  <nodes xsi:type="pageflow:PFPage" name="/pages/bord.xhtml" x="338" y="178" id="pf15573336471019" referenceLink="//@navigationRule.3/@fromViewId|" outlinks="pf15573336471005" inlinks="pf15573336471007" path="/pages/bord.xhtml"/>
+  <links id="pf15573336471002" target="pf15573336471006" source="pf15573336470991" outcome="valide" redirect="true"/>
+  <links id="pf15573336471003" target="pf15573336471008" source="pf15573336470991" outcome="invalide" redirect="true"/>
+  <links id="pf15573336471007" target="pf15573336471019" source="pf15573336471006" outcome="bord" redirect="true"/>
+  <links id="pf15573336471004" target="pf15573336470991" source="pf15573336471006" outcome="logout" redirect="true"/>
+  <links id="pf15573336471005" target="pf15573336470991" source="pf15573336471019" outcome="logout" redirect="true"/>
+</pageflow:Pageflow>

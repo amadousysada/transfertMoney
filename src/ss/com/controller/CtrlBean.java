@@ -399,7 +399,7 @@ public void setBarModel2(BarChartModel barModel2) {
     
  
     public List<String> getImages() {
-    	List<String> li=new LinkedList();
+    	List<String> li=new LinkedList<String>();
     	li.add("Nouakchott");
     	li.add("Nouadhibou");
     	li.add("Rosso");

@@ -91,6 +91,5 @@
             <to-view-id>/login.xhtml</to-view-id>
             <redirect></redirect>
         </navigation-case>
-        
     </navigation-rule> 
 </faces-config>
